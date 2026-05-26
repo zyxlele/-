@@ -1,0 +1,6 @@
+{
+  "name": "IELTS Study Dashboard",
+  "description": "An interactive, premium IELTS preparation command center featuring a 32-day structured task tracking matrix, performance analytics, customized mock timers, error logs, and local-backed reading/writing diagnostic tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
