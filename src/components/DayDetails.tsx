@@ -120,38 +120,50 @@ export default function DayDetails({
 
             <div className="space-y-2">
               {day.reading.timed && (
-                <div className="flex items-center justify-between text-xs py-1 hover:bg-slate-50/50 rounded px-1 transition">
-                  <span className="text-slate-600 truncate flex-1 mr-3 leading-relaxed">
+                <div 
+                  onClick={() => onToggleStatus("readingTimed")}
+                  className={`flex items-center justify-between text-xs p-2.5 rounded-xl cursor-pointer transition-all border ${
+                    status.readingTimed 
+                      ? "bg-emerald-50/40 border-emerald-200" 
+                      : "bg-white border-slate-100 hover:border-slate-350 hover:bg-slate-50/50"
+                  }`}
+                >
+                  <span className={`text-slate-605 truncate flex-1 mr-3 leading-relaxed ${status.readingTimed ? "line-through text-slate-400" : ""}`}>
                     ⏱️ <strong>限时训练:</strong> <span className="font-mono bg-slate-100 px-1.5 py-0.5 rounded text-[11px] text-slate-700">{day.reading.timed}</span>
                   </span>
-                  <button
-                    onClick={() => onToggleStatus("readingTimed")}
-                    className={`h-5 w-5 rounded-md border flex items-center justify-center cursor-pointer transition ${
+                  <div
+                    className={`h-5.5 w-5.5 rounded-md border-2 border-solid flex items-center justify-center transition shrink-0 ${
                       status.readingTimed 
                         ? "bg-emerald-500 border-emerald-500 text-white" 
-                        : "border-slate-300 bg-white hover:border-teal-500"
+                        : "border-slate-350 bg-white hover:border-teal-500 hover:bg-slate-50"
                     }`}
                   >
-                    {status.readingTimed && <Check className="h-3 w-3 stroke-[3]" />}
-                  </button>
+                    {status.readingTimed && <Check className="h-3.5 w-3.5 stroke-[3.5]" />}
+                  </div>
                 </div>
               )}
 
               {day.reading.intensive && (
-                <div className="flex items-center justify-between text-xs py-1 hover:bg-slate-50/50 rounded px-1 transition">
-                  <span className="text-slate-600 truncate flex-1 mr-3 leading-relaxed">
+                <div 
+                  onClick={() => onToggleStatus("readingIntensive")}
+                  className={`flex items-center justify-between text-xs p-2.5 rounded-xl cursor-pointer transition-all border ${
+                    status.readingIntensive 
+                      ? "bg-emerald-50/40 border-emerald-200" 
+                      : "bg-white border-slate-100 hover:border-slate-350 hover:bg-slate-50/50"
+                  }`}
+                >
+                  <span className={`text-slate-605 truncate flex-1 mr-3 leading-relaxed ${status.readingIntensive ? "line-through text-slate-400" : ""}`}>
                     🎓 <strong>长句精读:</strong> <span className="font-semibold text-slate-800">{day.reading.intensive}</span>
                   </span>
-                  <button
-                    onClick={() => onToggleStatus("readingIntensive")}
-                    className={`h-5 w-5 rounded-md border flex items-center justify-center cursor-pointer transition ${
+                  <div
+                    className={`h-5.5 w-5.5 rounded-md border-2 border-solid flex items-center justify-center transition shrink-0 ${
                       status.readingIntensive 
                         ? "bg-emerald-500 border-emerald-500 text-white" 
-                        : "border-slate-300 bg-white hover:border-teal-500"
+                        : "border-slate-350 bg-white hover:border-teal-500 hover:bg-slate-50"
                     }`}
                   >
-                    {status.readingIntensive && <Check className="h-3 w-3 stroke-[3]" />}
-                  </button>
+                    {status.readingIntensive && <Check className="h-3.5 w-3.5 stroke-[3.5]" />}
+                  </div>
                 </div>
               )}
             </div>
@@ -171,20 +183,27 @@ export default function DayDetails({
 
             <div className="space-y-2">
               {day.listening.map((section, idx) => (
-                <div key={idx} className="flex items-center justify-between text-xs py-1 hover:bg-slate-50/50 rounded px-1 transition">
-                  <span className="text-slate-600 truncate flex-1 mr-3 leading-relaxed">
+                <div 
+                  key={idx} 
+                  onClick={() => onToggleListening(idx)}
+                  className={`flex items-center justify-between text-xs p-2.5 rounded-xl cursor-pointer transition-all border ${
+                    status.listening[idx] 
+                      ? "bg-emerald-50/40 border-emerald-200" 
+                      : "bg-white border-slate-100 hover:border-slate-350 hover:bg-slate-50/50"
+                  }`}
+                >
+                  <span className={`text-slate-605 truncate flex-1 mr-3 leading-relaxed ${status.listening[idx] ? "line-through text-slate-400" : ""}`}>
                     🔊 <strong>{section.includes("Part") ? "Part" : "Section"}:</strong> <span className="font-mono font-medium text-slate-800">{section}</span>
                   </span>
-                  <button
-                    onClick={() => onToggleListening(idx)}
-                    className={`h-5 w-5 rounded-md border flex items-center justify-center cursor-pointer transition ${
+                  <div
+                    className={`h-5.5 w-5.5 rounded-md border-2 border-solid flex items-center justify-center transition shrink-0 ${
                       status.listening[idx] 
                         ? "bg-emerald-500 border-emerald-500 text-white" 
-                        : "border-slate-300 bg-white hover:border-teal-500"
+                        : "border-slate-350 bg-white hover:border-teal-500 hover:bg-slate-50"
                     }`}
                   >
-                    {status.listening[idx] && <Check className="h-3 w-3 stroke-[3]" />}
-                  </button>
+                    {status.listening[idx] && <Check className="h-3.5 w-3.5 stroke-[3.5]" />}
+                  </div>
                 </div>
               ))}
             </div>
@@ -202,31 +221,40 @@ export default function DayDetails({
               <span className="text-[9px] font-mono text-slate-400 bg-slate-50 px-1.5 py-0.2 rounded font-semibold">大/小作文范文对比</span>
             </div>
 
-            <div className="flex items-center justify-between text-xs gap-4">
-              <div className="flex-1 text-slate-600 text-xs leading-relaxed">
+            <div 
+              onClick={() => onToggleStatus("writing")}
+              className={`flex items-center justify-between text-xs p-2.5 rounded-xl cursor-pointer transition-all border ${
+                status.writing 
+                  ? "bg-emerald-50/40 border-emerald-200" 
+                  : "bg-white border-slate-100 hover:border-slate-350 hover:bg-slate-50/50"
+              }`}
+            >
+              <div className={`flex-1 text-slate-605 text-xs leading-relaxed mr-3 ${status.writing ? "line-through text-slate-400" : ""}`}>
                 ✏️ <strong>命题题目:</strong> <span className="font-semibold text-slate-800 block sm:inline mt-1 sm:mt-0">{day.writing}</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 shrink-0">
                 {/* Sandbox Link button */}
                 <button
-                  onClick={handleOpenSandbox}
-                  className="bg-teal-50 hover:bg-teal-100 text-teal-800 border border-teal-200/50 py-1 px-2 rounded-lg text-[10px] font-bold cursor-pointer transition-all flex items-center gap-1 shrink-0"
+                  onClick={(e) => {
+                    e.stopPropagation(); // Avoid triggering completion toggle of writing
+                    handleOpenSandbox();
+                  }}
+                  className="bg-teal-50 hover:bg-teal-105 text-teal-800 border border-teal-200/50 py-1 px-2.5 rounded-lg text-[10px] font-bold cursor-pointer transition-all flex items-center gap-1 shrink-0"
                   title="开往写作练习大厅"
                 >
                   <FileText className="h-3 w-3" />
                   写草稿
                 </button>
                 
-                <button
-                  onClick={() => onToggleStatus("writing")}
-                  className={`h-5 w-5 rounded-md border flex items-center justify-center cursor-pointer transition shrink-0 ${
+                <div
+                  className={`h-5.5 w-5.5 rounded-md border-2 border-solid flex items-center justify-center transition shrink-0 ${
                     status.writing 
                       ? "bg-emerald-500 border-emerald-500 text-white" 
-                      : "border-slate-300 bg-white hover:border-teal-500"
+                      : "border-slate-350 bg-white hover:border-teal-500 hover:bg-slate-50"
                   }`}
                 >
-                  {status.writing && <Check className="h-3 w-3 stroke-[3]" />}
-                </button>
+                  {status.writing && <Check className="h-3.5 w-3.5 stroke-[3.5]" />}
+                </div>
               </div>
             </div>
           </div>
@@ -245,48 +273,66 @@ export default function DayDetails({
 
             <div className="space-y-2 text-xs">
               {day.speaking.part1 && day.speaking.part1.length > 0 && (
-                <div className="flex items-start justify-between py-1 px-1 rounded hover:bg-slate-50/50 transition">
-                  <div className="text-slate-600 flex-1 mr-3 leading-relaxed">
-                    🗣️ <strong>Part 1 答辨:</strong> 
+                <div 
+                  onClick={() => onToggleStatus("speakingPart1")}
+                  className={`flex items-start justify-between p-2.5 rounded-xl cursor-pointer transition-all border ${
+                    status.speakingPart1 
+                      ? "bg-emerald-50/40 border-emerald-200" 
+                      : "bg-white border-slate-100 hover:border-slate-350 hover:bg-slate-50/50"
+                  }`}
+                >
+                  <div className="text-slate-605 flex-1 mr-3 leading-relaxed">
+                    🗣️ <strong className={`${status.speakingPart1 ? "line-through text-slate-400 font-normal" : "font-bold text-slate-800"}`}>Part 1 答辨:</strong> 
                     <div className="flex flex-wrap gap-1.5 mt-1">
                       {day.speaking.part1.map((p, idx) => (
-                        <span key={idx} className="bg-rose-50 text-rose-800 px-2 py-0.5 rounded font-mono font-medium text-[10px] border border-rose-100/30">
+                        <span key={idx} className={`px-2 py-0.5 rounded font-mono font-medium text-[10px] border ${
+                          status.speakingPart1
+                            ? "bg-slate-100 text-slate-400 border-slate-200/50 line-through"
+                            : "bg-rose-50 text-rose-800 border-rose-100/30"
+                        }`}>
                           {p}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <button
-                    onClick={() => onToggleStatus("speakingPart1")}
-                    className={`h-5 w-5 rounded-md border flex items-center justify-center cursor-pointer transition shrink-0 mt-0.5 ${
+                  <div
+                    className={`h-5.5 w-5.5 rounded-md border-2 border-solid flex items-center justify-center transition shrink-0 mt-0.5 ${
                       status.speakingPart1 
                         ? "bg-emerald-500 border-emerald-500 text-white" 
-                        : "border-slate-300 bg-white hover:border-teal-500"
+                        : "border-slate-350 bg-white hover:border-teal-500 hover:bg-slate-50"
                     }`}
                   >
-                    {status.speakingPart1 && <Check className="h-3 w-3 stroke-[3]" />}
-                  </button>
+                    {status.speakingPart1 && <Check className="h-3.5 w-3.5 stroke-[3.5]" />}
+                  </div>
                 </div>
               )}
 
               {day.speaking.part2 && (
-                <div className="flex items-start justify-between py-1 px-1 rounded hover:bg-slate-50/50 transition border-t border-slate-100/40 pt-2 mt-2">
-                  <div className="text-slate-600 flex-1 mr-3 leading-relaxed">
-                    🌟 <strong>Part 2 复述:</strong> 
-                    <span className="font-semibold text-slate-800 block sm:inline mt-1 sm:mt-0 font-sans text-rose-900 border-l-2 border-rose-400 pl-2 ml-1">
+                <div 
+                  onClick={() => onToggleStatus("speakingPart2")}
+                  className={`flex items-start justify-between p-2.5 rounded-xl cursor-pointer transition-all border ${
+                    status.speakingPart2 
+                      ? "bg-emerald-50/40 border-emerald-200" 
+                      : "bg-white border-slate-100 hover:border-slate-350 hover:bg-slate-50/50"
+                  }`}
+                >
+                  <div className="text-slate-605 flex-1 mr-3 leading-relaxed">
+                    🌟 <strong className={`${status.speakingPart2 ? "line-through text-slate-400 font-normal" : "font-bold text-slate-800"}`}>Part 2 复述:</strong> 
+                    <span className={`font-semibold block sm:inline mt-1 sm:mt-0 font-sans border-l-2 pl-2 ml-1 ${
+                      status.speakingPart2 ? "line-through text-slate-400 border-slate-300" : "text-rose-900 border-rose-400"
+                    }`}>
                       {day.speaking.part2}
                     </span>
                   </div>
-                  <button
-                    onClick={() => onToggleStatus("speakingPart2")}
-                    className={`h-5 w-5 rounded-md border flex items-center justify-center cursor-pointer transition shrink-0 mt-0.5 ${
+                  <div
+                    className={`h-5.5 w-5.5 rounded-md border-2 border-solid flex items-center justify-center transition shrink-0 mt-0.5 ${
                       status.speakingPart2 
                         ? "bg-emerald-500 border-emerald-500 text-white" 
-                        : "border-slate-300 bg-white hover:border-teal-500"
+                        : "border-slate-350 bg-white hover:border-teal-500 hover:bg-slate-50"
                     }`}
                   >
-                    {status.speakingPart2 && <Check className="h-3 w-3 stroke-[3]" />}
-                  </button>
+                    {status.speakingPart2 && <Check className="h-3.5 w-3.5 stroke-[3.5]" />}
+                  </div>
                 </div>
               )}
             </div>
@@ -304,13 +350,20 @@ export default function DayDetails({
               <span className="text-[9px] font-mono text-slate-400 bg-slate-50 px-1.5 py-0.2 rounded font-semibold">难点清扫</span>
             </div>
 
-            <div className="space-y-1.5">
+            <div 
+              onClick={() => onToggleStatus("review")}
+              className={`p-3 rounded-xl cursor-pointer transition-all border ${
+                status.review 
+                  ? "bg-emerald-50/40 border-emerald-200" 
+                  : "bg-purple-50/30 border-purple-100 hover:border-purple-300 hover:bg-purple-50/60"
+              }`}
+            >
               <div className="text-[11px] text-slate-500 mb-2 leading-relaxed font-sans">
                 今日重点复盘科目：
                 <div className="space-y-1 mt-1 pl-3 text-slate-700 list-disc font-medium">
                   {day.review.map((item, keyIdx) => (
-                    <div key={keyIdx} className="flex items-center gap-1.5 text-xs text-purple-900 font-sans">
-                      <AlertCircle className="h-3.5 w-3.5 text-purple-500 inline shrink-0" />
+                    <div key={keyIdx} className={`flex items-center gap-1.5 text-xs font-sans ${status.review ? "line-through text-slate-400" : "text-purple-900"}`}>
+                      <AlertCircle className={`h-3.5 w-3.5 inline shrink-0 ${status.review ? "text-slate-400" : "text-purple-500"}`} />
                       <span>{item}</span>
                     </div>
                   ))}
@@ -318,17 +371,16 @@ export default function DayDetails({
               </div>
 
               <div className="flex justify-end pt-1">
-                <button
-                  onClick={() => onToggleStatus("review")}
-                  className={`py-1.5 px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 cursor-pointer transition ${
+                <div
+                  className={`py-1.5 px-3 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition ${
                     status.review 
-                      ? "bg-emerald-500 border border-emerald-500 text-white" 
-                      : "bg-purple-50 border border-purple-200/50 text-purple-700 hover:bg-purple-100"
+                      ? "bg-emerald-500 text-white" 
+                      : "bg-purple-600 text-white hover:bg-purple-700 shadow-sm"
                   }`}
                 >
-                  <Check className="h-3.5 w-3.5 stroke-[2]" />
-                  {status.review ? "复盘已总结" : "标记复盘总结完毕"}
-                </button>
+                  <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                  {status.review ? "复盘已总结" : "标记总结完毕"}
+                </div>
               </div>
             </div>
           </div>
